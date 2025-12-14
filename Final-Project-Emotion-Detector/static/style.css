@@ -1,0 +1,68 @@
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
+  background: #f7f9fc;
+  margin: 0;
+  color: #111;
+}
+
+.container {
+  max-width: 720px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 28px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  resize: vertical;
+  min-height: 100px;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+button {
+  background: #0063e5;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #004bb5;
+}
+
+.card {
+  margin-top: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fafafa;
+}
+
+.error {
+  margin-top: 12px;
+  color: #b00020;
+  background: #ffeef0;
+  border: 1px solid #ffccd3;
+  padding: 10px;
+  border-radius: 6px;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Emotion Detector</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Emotion Detector</h1>
+    <form id="emotion-form" method="POST" action="/detect-emotion">
+      <label for="text">Enter text:</label>
+      <textarea id="text" name="text" rows="4" placeholder="Type something..."></textarea>
+      <button type="submit">Analyze</button>
+    </form>
+
+    <section id="result"></section>
+  </main>
+
+  <script>
+    const form = document.getElementById('emotion-form');
+    const resultEl = document.getElementById('result');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const text = formData.get('text');
+
+      resultEl.innerHTML = '<p>Analyzing...</p>';
+
+      try {
+        const res = await fetch('/detect-emotion', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          resultEl.innerHTML = `<div class="error">Error: ${data.error}</div>`;
+          return;
+        }
+
+        resultEl.innerHTML = `
+          <div class="card">
+            <h2>Result</h2>
+            <p><strong>Dominant emotion:</strong> ${data.dominant_emotion}</p>
+            <ul>
+              <li><strong>Anger:</strong> ${data.anger}</li>
+              <li><strong>Disgust:</strong> ${data.disgust}</li>
+              <li><strong>Fear:</strong> ${data.fear}</li>
+              <li><strong>Joy:</strong> ${data.joy}</li>
+              <li><strong>Sadness:</strong> ${data.sadness}</li>
+            </ul>
+          </div>
+        `;
+      } catch (err) {
+        resultEl.innerHTML = `<div class="error">Unexpected error: ${err}</div>`;
+      }
+    });
+  </script>
+</body>
+</html>
